@@ -1,0 +1,20 @@
+{
+  "name": "nirvana-logger",
+  "version": "2.3.6",
+  "description": "simple logger tools",
+  "main": "lib/index.js",
+  "keywords": [
+    "debug",
+    "color"
+  ],
+  "author": "gaoletian",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.0.1",
+    "fast-safe-stringify": "^1.2.2",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "jest": "^22.0.6"
+  }
+}
