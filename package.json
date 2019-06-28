@@ -1,6 +1,6 @@
 {
   "name": "nirvana-logger",
-  "version": "2.3.6",
+  "version": "2.3.7",
   "description": "simple logger tools",
   "main": "lib/index.js",
   "keywords": [
