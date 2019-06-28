@@ -170,7 +170,7 @@ module.exports.default = module.exports = function(nameSpace = null) {
         return arg;
       });
 
-      const message = argsStringifys.join(` `);
+      const content = argsStringifys.join(` `);
 
       const traceId = logger.traceId || "";
 
@@ -186,7 +186,7 @@ module.exports.default = module.exports = function(nameSpace = null) {
           scope,
           traceId,
           env,
-          message
+          message: content
         });
         fs.existsSync(jsonPath)
           ? fs.appendFile(jsonPath, writeContent + "\n", function() {})
