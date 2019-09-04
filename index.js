@@ -5,6 +5,7 @@ const path = require("path");
 const color = require("chalk");
 const lodash = require("lodash");
 const inspect = require("util").inspect;
+const os = require("os");
 /**
  *  测试了以下四个库的效率， fast-safe-stringify 最快
  *  "fast-json-stringify": "^0.17.0","fast-safe-stringify": "^1.2.2",
@@ -13,6 +14,16 @@ const inspect = require("util").inspect;
 const fastSafeStringify = require("fast-safe-stringify");
 
 const K8_CONSOLE_MAX_LINE = 200;
+const getIpAddress = () => {
+  try {
+    return os.networkInterfaces().eth0[0].address;
+  } catch (err) {
+    return "";
+  }
+};
+const IP = getIpAddress();
+const HostName = os.hostname();
+
 let logCounter = 0;
 
 const isColor = process.env.LOG_COLOR || false;
@@ -128,7 +139,8 @@ module.exports.default = module.exports = function(nameSpace = null) {
       LOG_FILE_NAME,
       env,
       serviceName,
-      productName
+      productName,
+      MY_POD_NAME
     } = process.env;
     const group = productName;
     const isk8OrProd = process.env.env === "production" || isK8Env();
@@ -179,6 +191,9 @@ module.exports.default = module.exports = function(nameSpace = null) {
       if (isK8Env()) {
         const jsonPath = path.join(LOG_PATH, LOG_FILE_NAME);
         const writeContent = stringify({
+          hostname: HostName,
+          containerIp: IP,
+          padName: MY_POD_NAME,
           group,
           serviceName,
           timestamp,
